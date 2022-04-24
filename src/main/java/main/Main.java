@@ -1,31 +1,21 @@
 package main;
 
 
+import PaticipantCheckSystem.General.LoginForm;
+import PaticipantCheckSystem.ManagerScreens.AddStudentScreen;
+import PaticipantCheckSystem.ManagerScreens.DetailSchedule;
+import daos.HibernateUtil;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-import org.hibernate.cfg.Configuration;
-import org.hibernate.service.ServiceRegistry;
-import pojo.Account;
+import pojo.Calendar;
 
+import java.time.LocalDate;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Project started..");
-        Configuration cfg = new Configuration();
-        cfg.configure("hibernate.cfg.xml");
-        SessionFactory factory = cfg.buildSessionFactory ();
 
-        Account newAccount = new Account(5, "123", "123");
-
-        Session session = factory.openSession();
-        session.beginTransaction();
-        session.persist(newAccount);
-        session.getTransaction().commit();
-        session.close();
-
-
-
-
+//        new LoginForm();
+//        new
+        new AddStudentScreen(null);
     }
+
 }

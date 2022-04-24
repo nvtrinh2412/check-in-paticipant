@@ -34,6 +34,17 @@
 
         <!-- List of XML mapping files -->
        <mapping class = "pojo.Account" />
+       <mapping class = "pojo.Attendant" />
+        <mapping class = "pojo.AttendantId" />
+        <mapping class = "pojo.CalendarId" />
+        <mapping class = "pojo.Calendar" />
+
+        <mapping class = "pojo.ClassId" />
+       <mapping class = "pojo.Manager" />
+       <mapping class = "pojo.Room"/>
+       <mapping class = "pojo.Student" />
+       <mapping class = "pojo.Subject" />
+       <mapping class = "pojo.Class" />
 
 
     </session-factory>

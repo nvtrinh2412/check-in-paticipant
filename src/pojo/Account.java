@@ -10,7 +10,7 @@ import jakarta.persistence.Table;
 public class Account {
     @Id
     @Column(name = "userID", nullable = false)
-    private int id;
+    private Integer id;
 
     @Column(name = "username", nullable = false, length = 45)
     private String username;
@@ -18,20 +18,17 @@ public class Account {
     @Column(name = "password", nullable = false, length = 45)
     private String password;
 
-    public Account() {
-    }
+    @Column(name = "isValid")
+    private Integer isValid;
 
-    public Account(int id, String username, String password) {
-        this.id = id;
-        this.username = username;
-        this.password = password;
-    }
+    @Column(name = "role", length = 45)
+    private String role;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -49,6 +46,22 @@ public class Account {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Integer getIsValid() {
+        return isValid;
+    }
+
+    public void setIsValid(Integer isValid) {
+        this.isValid = isValid;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 
 }

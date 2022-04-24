@@ -2,16 +2,12 @@ package pojo;
 
 import jakarta.persistence.*;
 
-import java.util.LinkedHashSet;
-import java.util.Set;
-
 @Entity
 @Table(name = "subjects")
 public class Subject {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
-    private Integer id;
+    @Column(name = "id", nullable = false, length = 45)
+    private String id;
 
     @Column(name = "name", nullable = false, length = 45)
     private String name;
@@ -20,20 +16,20 @@ public class Subject {
     @JoinColumn(name = "creatorID")
     private Manager creatorID;
 
-    @ManyToMany
-    @JoinTable(name = "student_subject",
-            joinColumns = @JoinColumn(name = "subjectID"),
-            inverseJoinColumns = @JoinColumn(name = "studentID"))
-    private Set<Student> students = new LinkedHashSet<>();
+    public Subject() {
+    }
 
-    @OneToMany(mappedBy = "subject")
-    private Set<Attendant> attendants = new LinkedHashSet<>();
+    public Subject(String subjectID, String subjectName, Manager creatorID) {
+        this.id = subjectID;
+        this.name = subjectName;
+        this.creatorID = new Manager(creatorID.getId());
+    }
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -51,22 +47,6 @@ public class Subject {
 
     public void setCreatorID(Manager creatorID) {
         this.creatorID = creatorID;
-    }
-
-    public Set<Student> getStudents() {
-        return students;
-    }
-
-    public void setStudents(Set<Student> students) {
-        this.students = students;
-    }
-
-    public Set<Attendant> getAttendants() {
-        return attendants;
-    }
-
-    public void setAttendants(Set<Attendant> attendants) {
-        this.attendants = attendants;
     }
 
 }

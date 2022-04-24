@@ -1,9 +1,9 @@
 package pojo;
 
-import jakarta.persistence.*;
-
-import java.util.LinkedHashSet;
-import java.util.Set;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "managers")
@@ -15,11 +15,13 @@ public class Manager {
     @Column(name = "name", nullable = false, length = 45)
     private String name;
 
-    @OneToMany(mappedBy = "creatorID")
-    private Set<Subject> subjects = new LinkedHashSet<>();
+    public Manager() {
+    }
 
-    @OneToMany(mappedBy = "giaovuID")
-    private Set<Calendar> calendars = new LinkedHashSet<>();
+    public Manager(Integer managerID) {
+        this.id = managerID;
+        this.name = "";
+    }
 
     public Integer getId() {
         return id;
@@ -35,22 +37,6 @@ public class Manager {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Set<Subject> getSubjects() {
-        return subjects;
-    }
-
-    public void setSubjects(Set<Subject> subjects) {
-        this.subjects = subjects;
-    }
-
-    public Set<Calendar> getCalendars() {
-        return calendars;
-    }
-
-    public void setCalendars(Set<Calendar> calendars) {
-        this.calendars = calendars;
     }
 
 }
