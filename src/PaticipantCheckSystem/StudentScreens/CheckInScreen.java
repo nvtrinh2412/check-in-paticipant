@@ -7,6 +7,7 @@ import pojo.Attendant;
 import pojo.Calendar;
 
 import javax.swing.*;
+import java.time.Instant;
 import java.time.LocalTime;
 import java.util.Date;
 import java.util.HashMap;
@@ -44,11 +45,17 @@ public class CheckInScreen extends JDialog{
             String roomName = Objects.requireNonNull(comboBoxClass.getSelectedItem()).toString();
             Integer roomID = roomMap.get(roomName);
             String weekDay = Objects.requireNonNull(comboBoxWeekDay.getSelectedItem()).toString();
-            Integer attendantID = 19120700;
+            Integer attendantID = UserSession.getUserID();
 
 
             if(checkValidCheckIn(subjectID,roomID,weekDay)){
-                AttendantDAO.takeCheckInProgress(attendantID,subjectID);
+                if(AttendantDAO.takeCheckInProgress(attendantID,subjectID)){
+                    JOptionPane.showMessageDialog(this,"Check in success");
+
+                }
+                else{
+                    JOptionPane.showMessageDialog(this,"Your check in is already in progress");
+                }
             }
 
         });
@@ -68,6 +75,7 @@ public class CheckInScreen extends JDialog{
             JOptionPane.showMessageDialog(this,"No class on this day");
             return false;
         }
+
         else{
             String startTimeSchedule = calendar.getStartTime();
             String endTimeSchedule = calendar.getEndTime();
@@ -75,7 +83,7 @@ public class CheckInScreen extends JDialog{
             LocalTime endTime =  LocalTime.parse(endTimeSchedule);
             LocalTime currentTime = LocalTime.parse(current);
             if(currentTime.isBefore(startTime) && currentTime.isAfter(endTime)){
-                JOptionPane.showMessageDialog(this,"Check in success");
+
                 return true;
 
             }

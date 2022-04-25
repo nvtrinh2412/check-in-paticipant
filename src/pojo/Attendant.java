@@ -3,6 +3,7 @@ package pojo;
 import jakarta.persistence.*;
 
 import java.time.Instant;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "attendants")
@@ -23,7 +24,7 @@ public class Attendant {
     public Attendant() {
     }
 
-    public Attendant(Student studentID, Subject subjectID, Instant day) {
+    public Attendant(Student studentID, Subject subjectID, LocalDate day) {
         this.studentID = studentID;
         this.subjectID = subjectID;
         this.id = new AttendantId(studentID.getId(), subjectID.getId(), day);

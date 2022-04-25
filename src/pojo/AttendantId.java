@@ -7,13 +7,14 @@ import org.hibernate.Hibernate;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.time.LocalDate;
 import java.util.Objects;
 
 @Embeddable
 public class AttendantId implements Serializable {
     private static final long serialVersionUID = -5492470774512607600L;
     @Column(name = "date", nullable = false)
-    private Instant date;
+    private LocalDate date;
 
     @Column(name = "subjectID", nullable = false, length = 45)
     private String subjectID;
@@ -24,17 +25,17 @@ public class AttendantId implements Serializable {
     public AttendantId() {
     }
 
-    public AttendantId(Integer studentID, String subjectID, Instant date) {
+    public AttendantId(Integer studentID, String subjectID, LocalDate date) {
         this.studentID = studentID;
         this.subjectID = subjectID;
         this.date =date;
     }
 
-    public Instant getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Instant date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 

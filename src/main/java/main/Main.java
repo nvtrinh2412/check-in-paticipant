@@ -6,6 +6,7 @@ import daos.AttendantDAO;
 import daos.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
+import pojo.Attendant;
 import pojo.Calendar;
 
 import java.time.*;
@@ -18,7 +19,8 @@ public class Main {
 
 //        new LoginForm();
 //
-
+//        new CheckInScreen();
+        AttendantDAO.takeCheckInProgress(19120696,"3");
 
     }
 
