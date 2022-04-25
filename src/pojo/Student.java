@@ -15,6 +15,14 @@ public class Student {
     @Column(name = "name", nullable = false, length = 45)
     private String name;
 
+    public Student() {
+    }
+
+    public Student(Integer id) {
+        this.id = id;
+        this.name = "";
+    }
+
     public Integer getId() {
         return id;
     }

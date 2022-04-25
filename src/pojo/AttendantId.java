@@ -21,6 +21,15 @@ public class AttendantId implements Serializable {
     @Column(name = "studentID", nullable = false)
     private Integer studentID;
 
+    public AttendantId() {
+    }
+
+    public AttendantId(Integer studentID, String subjectID, Instant date) {
+        this.studentID = studentID;
+        this.subjectID = subjectID;
+        this.date =date;
+    }
+
     public Instant getDate() {
         return date;
     }

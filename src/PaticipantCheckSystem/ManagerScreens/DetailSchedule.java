@@ -18,20 +18,20 @@ import java.time.YearMonth;
 import java.util.*;
 
 public class DetailSchedule extends JDialog{
-    private JComboBox comboBoxWeekDay;
-    private JComboBox comboBoxRoom;
+    private JComboBox<String> comboBoxWeekDay;
+    private JComboBox<String> comboBoxRoom;
     private JSpinner spinnerStartHour;
     private JSpinner spinnerStartMinute;
-    private JComboBox comboBoxStartMonth;
+    private JComboBox<String> comboBoxStartMonth;
     private JButton btnConfirm;
     private JLabel labelSelectedSubject;
     private JPanel panelDetailSchedule;
-    private JComboBox comboBoxSubject;
+    private JComboBox<String> comboBoxSubject;
     private JSpinner spinnerStartYear;
     private JSpinner spinnerStartDay;
     private JSpinner spinnerEndHour;
     private JSpinner spinnerEndMinute;
-    private JComboBox comboBoxEndMonth;
+    private JComboBox<String> comboBoxEndMonth;
     private JSpinner spinnerEndDay;
     private JSpinner spinnerEndYear;
 

@@ -4,11 +4,11 @@ import PaticipantCheckSystem.General.ConfigurationDialog;
 
 import javax.swing.*;
 
-public class AttendantResult extends JDialog{
+public class CheckInResult extends JDialog{
     private JTable tableAttendantResult;
     private JPanel panelAttendantResult;
 
-    public AttendantResult(JFrame parent){
+    public CheckInResult(JFrame parent){
         super(parent);
         setLocationRelativeTo(parent);
         createUIComponents();

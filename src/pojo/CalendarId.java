@@ -28,6 +28,12 @@ public class CalendarId implements Serializable {
         this.weekday = weekday;
         this.startTime = startTime;
     }
+    public CalendarId(String subjectID, String roomID, String weekday, Boolean isSubject) {
+        this.roomID = Integer.parseInt(roomID);
+        this.weekday = weekday;
+        this.startTime = subjectID;
+
+    }
 
     public Integer getRoomID() {
         return roomID;

@@ -2,6 +2,8 @@ package pojo;
 
 import jakarta.persistence.*;
 
+import java.time.Instant;
+
 @Entity
 @Table(name = "attendants")
 public class Attendant {
@@ -17,6 +19,15 @@ public class Attendant {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "studentID", nullable = false)
     private Student studentID;
+
+    public Attendant() {
+    }
+
+    public Attendant(Student studentID, Subject subjectID, Instant day) {
+        this.studentID = studentID;
+        this.subjectID = subjectID;
+        this.id = new AttendantId(studentID.getId(), subjectID.getId(), day);
+    }
 
     public AttendantId getId() {
         return id;

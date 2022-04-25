@@ -8,6 +8,7 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "managers")
 public class Manager {
+    private final int DEFAULT_ID = 1111111111;
     @Id
     @Column(name = "id", nullable = false)
     private Integer id;
@@ -16,6 +17,8 @@ public class Manager {
     private String name;
 
     public Manager() {
+        this.id = 1111111111;
+        this.name = "";
     }
 
     public Manager(Integer managerID) {

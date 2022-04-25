@@ -20,6 +20,15 @@ public class ClassId implements Serializable {
     @Column(name = "id", nullable = false, length = 45)
     private String id;
 
+    public ClassId() {
+    }
+
+    public ClassId(Integer studentID,String subjectID,String id) {
+        this.id = id;
+        this.subjectID = subjectID;
+        this.studentID = studentID;
+    }
+
     public Integer getStudentID() {
         return studentID;
     }

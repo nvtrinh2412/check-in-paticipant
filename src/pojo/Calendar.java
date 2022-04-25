@@ -48,6 +48,7 @@ public class Calendar {
 
     }
 
+
     public CalendarId getId() {
         return id;
     }
@@ -95,5 +96,18 @@ public class Calendar {
     public void setEndTime(String endTime) {
         this.endTime = endTime;
     }
+
+    public String getStartTime() {
+        return id.getStartTime();
+    }
+
+   public Integer getRoomID() {
+        return id.getRoomID();
+    }
+
+    public String getWeekday() {
+        return id.getWeekday();
+    }
+
 
 }

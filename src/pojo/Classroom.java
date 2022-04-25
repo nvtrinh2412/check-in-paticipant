@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "classes")
-public class Class {
+public class Classroom {
     @EmbeddedId
     private ClassId id;
 
@@ -16,7 +16,19 @@ public class Class {
     @MapsId("subjectID")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "subjectID", nullable = false)
-    private Subject subjectID;
+    private Subject subject;
+
+    public Classroom() {
+        studentID = new Student();
+    }
+
+    public Classroom(Student student, Subject subject, String classId) {
+        this.studentID = student;
+        this.subject = subject;
+        this.id = new ClassId(student.getId(), subject.getId(),classId);
+
+
+    }
 
     public ClassId getId() {
         return id;
@@ -26,20 +38,24 @@ public class Class {
         this.id = id;
     }
 
-    public Student getStudentID() {
+    public Student getStudent() {
         return studentID;
     }
 
-    public void setStudentID(Student studentID) {
-        this.studentID = studentID;
+    public void setStudent(Student student) {
+        this.studentID = student;
     }
 
     public Subject getSubjectID() {
-        return subjectID;
+        return subject;
     }
 
     public void setSubjectID(Subject subjectID) {
-        this.subjectID = subjectID;
+        this.subject = subjectID;
+    }
+
+    public  String getClassId() {
+        return id.getId();
     }
 
 }

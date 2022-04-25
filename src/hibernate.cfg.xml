@@ -44,7 +44,7 @@
        <mapping class = "pojo.Room"/>
        <mapping class = "pojo.Student" />
        <mapping class = "pojo.Subject" />
-       <mapping class = "pojo.Class" />
+       <mapping class = "pojo.Classroom" />
 
 
     </session-factory>
