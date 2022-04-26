@@ -41,7 +41,7 @@ public class ManagerMenu extends JDialog{
         btnCheckResult.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new CheckInResult(null);
+                new ManagerCheckInResult(null);
             }
         });
     }

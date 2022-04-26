@@ -49,6 +49,9 @@ public class Account {
     }
 
     public Integer getIsValid() {
+        if(isValid == null) {
+            return 0;
+        }
         return isValid;
     }
 

@@ -1,17 +1,10 @@
 package main;
 
 
-import PaticipantCheckSystem.StudentScreens.CheckInScreen;
+import PaticipantCheckSystem.ManagerScreens.ManagerCheckInResult;
 import daos.AttendantDAO;
-import daos.HibernateUtil;
-import org.hibernate.Session;
-import org.hibernate.query.Query;
-import pojo.Attendant;
-import pojo.Calendar;
 
-import java.time.*;
-import java.util.Date;
-import java.util.List;
+import java.util.Arrays;
 
 
 public class Main {
@@ -20,7 +13,14 @@ public class Main {
 //        new LoginForm();
 //
 //        new CheckInScreen();
-        AttendantDAO.takeCheckInProgress(19120696,"3");
+//        AttendantDAO.takeCheckInProgress(19120696,"3");
+
+//        new CheckInResult(null);
+
+//        new ManagerCheckInResult(null);
+        String[][] a = AttendantDAO.getCheckInResult("BIO00001543");
+        System.out.println(Arrays.deepToString(a));
+
 
     }
 

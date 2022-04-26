@@ -5,7 +5,7 @@ import java.awt.*;
 
 public class ConfigurationDialog {
     public static final int HEIGHT = 800;
-    public static final int WIDTH = 600;
+    public static final int WIDTH = 1000;
 
     public static void installBasicConfiguration(JDialog dialog, String title, Container container) {
         dialog.setTitle(title);

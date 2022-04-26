@@ -2,6 +2,7 @@ package PaticipantCheckSystem.ManagerScreens;
 
 import PaticipantCheckSystem.General.ConfigurationDialog;
 import PaticipantCheckSystem.General.UserSession;
+import daos.CalendarDAO;
 import daos.HibernateUtil;
 import daos.RoomDAO;
 import daos.SubjectDAO;
@@ -14,6 +15,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.YearMonth;
 import java.util.*;
 
@@ -113,6 +115,11 @@ public class DetailSchedule extends JDialog{
                 String endHour = spinnerEndHour.getValue().toString();
                 String endMinute = spinnerEndMinute.getValue().toString();
 
+                if(endMinute.length() == 1) endMinute = "0" + endMinute;
+                if(startMinute.length() == 1) startMinute = "0" + startMinute;
+                if(endHour.length() == 1) endHour = "0" + endHour;
+                if(startHour.length() == 1) startHour = "0" + startHour;
+
                 String weekday = Objects.requireNonNull(comboBoxWeekDay.getSelectedItem()).toString();
 
                 String startTime = startHour + ":" + startMinute;
@@ -122,18 +129,24 @@ public class DetailSchedule extends JDialog{
                 String subjectID = subjectList.get(subjectName);
                 String roomID = String.valueOf(roomList.get(Objects.requireNonNull(comboBoxRoom.getSelectedItem()).toString()));
                 Integer managerID = UserSession.getInstance().getId();
+                LocalTime startTimeObject = LocalTime.parse(startTime);
+                LocalTime endTimeObject = LocalTime.parse(endTime);
 
-                if ( startDate.isEqual(endDate) || startTime.compareTo(endTime) > 0) {
-                    JOptionPane.showMessageDialog(null, "Start date must be before end date");
+
+                if ( startDate.isAfter(endDate) ) {
+                    JOptionPane.showMessageDialog(null, "Start of Date must be before end Date");
+
                 }
-                else{
-                    Session session = HibernateUtil.getSessionFactory().openSession();
-                    session.beginTransaction();
-                    session.persist(new Calendar(subjectID, roomID, weekday, startDate, endDate,111111111, startTime, endTime));
-                    session.getTransaction().commit();
-                    session.close();
-                    JOptionPane.showMessageDialog(null, "Successfully added");
-                    dispose();
+                else if( startTimeObject.compareTo(endTimeObject) > 0){
+                    JOptionPane.showMessageDialog(null, "Start of Time must be before end Time");
+                }
+                else {
+                    if (CalendarDAO.createCalendar(subjectID, roomID, weekday, startDate, endDate, startTime, endTime)) {
+                        JOptionPane.showMessageDialog(null, "Successfully added");
+                        dispose();
+                    } else {
+                        JOptionPane.showMessageDialog(null, "This subject is already scheduled for this room on this day");
+                    }
                 }
             }
         });

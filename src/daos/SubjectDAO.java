@@ -14,9 +14,16 @@ public class SubjectDAO {
         Subject subject = new Subject(subjectID, subjectName, new Manager(creatorID));
 
         session.beginTransaction();
-        session.persist(subject);
+        if(!session.contains(subject)) {
+            session.persist(subject);
+
+        }
+        else{
+            System.out.println("Subject already exists");
+        }
         session.getTransaction().commit();
         session.close();
+
     }
 
     public static HashMap<String,String> getSubjectList() {

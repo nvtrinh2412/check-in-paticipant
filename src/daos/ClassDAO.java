@@ -14,15 +14,15 @@ public class ClassDAO {
     public static void addStudentToClass(List<Integer> studentId, String subjectID, String classID) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
+        Subject subject = session.get(Subject.class, subjectID);
+
        for(Integer id : studentId) {
 
            ClassId classId1 = new ClassId(id,subjectID, classID);
            Student student = session.get(Student.class, id);
-           System.out.println("Student " + student.getId());
-           Subject subject = session.get(Subject.class, subjectID);
-           System.out.println("Subject " + subject.getId());
-
            Classroom classroom = new Classroom(student, subject, classID);
+
+
            if(session.get(Classroom.class, classId1) == null) {
                session.persist(classroom);
            }

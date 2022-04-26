@@ -51,7 +51,7 @@ public class CheckInScreen extends JDialog{
             if(checkValidCheckIn(subjectID,roomID,weekDay)){
                 if(AttendantDAO.takeCheckInProgress(attendantID,subjectID)){
                     JOptionPane.showMessageDialog(this,"Check in success");
-
+                    dispose();
                 }
                 else{
                     JOptionPane.showMessageDialog(this,"Your check in is already in progress");
@@ -81,8 +81,9 @@ public class CheckInScreen extends JDialog{
             String endTimeSchedule = calendar.getEndTime();
             LocalTime startTime = LocalTime.parse(startTimeSchedule);
             LocalTime endTime =  LocalTime.parse(endTimeSchedule);
-            LocalTime currentTime = LocalTime.parse(current);
-            if(currentTime.isBefore(startTime) && currentTime.isAfter(endTime)){
+            LocalTime currentTime = LocalTime.now();
+
+            if(currentTime.isAfter(startTime) && currentTime.isBefore(endTime)){
 
                 return true;
 

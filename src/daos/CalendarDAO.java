@@ -10,12 +10,16 @@ import java.util.List;
 
 public class CalendarDAO {
     public static boolean createCalendar(String subjectID, String roomID, String weekday, LocalDate startDay, LocalDate endDay, String startTime, String endTime) {
+        boolean result = false;
         Integer creatorID = UserSession.getUserID();
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
-        session.persist(new Calendar(subjectID, roomID, weekday, startDay, endDay, creatorID, startTime, endTime));
+        if(getCalendar(subjectID, roomID, weekday) == null) {
+            session.persist(new Calendar(subjectID, roomID, weekday, startDay, endDay, creatorID, startTime, endTime));
+            result = true;
+        }
         session.getTransaction().commit();
-        return true;
+        return result;
     }
 
     public static Calendar getCalendar(String subjectID, String roomID, String weekday){
@@ -36,5 +40,24 @@ public class CalendarDAO {
         session.close();
         return null;
 
+    }
+
+    public static LocalDate getStartDate(String subjectID){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+
+        String hql = "FROM Calendar WHERE subjectID = :subjectID";
+
+        Query query = session.createQuery(hql);
+        query.setParameter("subjectID", subjectID);
+        List<Calendar> calendars = query.list();
+        for (Calendar calendar : calendars) {
+            if (calendar.getSubjectID().toString().equals(subjectID)) {
+                session.close();
+                return calendar.getStartDay();
+            }
+        }
+        session.close();
+        return null;
     }
 }
